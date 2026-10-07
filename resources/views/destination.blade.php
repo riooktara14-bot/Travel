@@ -25,7 +25,7 @@ h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
     padding:24px 0 40px;
     background:
         linear-gradient(rgba(6,20,40,.65), rgba(6,20,40,.75)),
-        url("{{ asset('assets2/img/bg2.JPG') }}") center center / cover no-repeat;
+        url("{{ asset('assets2/img/bg2.jpg') }}") center center / cover no-repeat;
     color:#fff;
     text-align:center;
 }
@@ -190,7 +190,7 @@ h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
       <article class="activity-card">
         <div class="activity-thumb">
           <img
-            src="{{ $wisata->gambar ?: asset('assets2/img/bg2.JPG') }}"
+            src="{{ $wisata->gambar ?: asset('assets2/img/bg2.jpg') }}"
             alt="Foto {{ $wisata->nama_destinasi }}"
             loading="lazy">
         </div>

@@ -44,7 +44,7 @@ by Awe7 (http://awe7.com/freebies)
 
 <div class="header__logo">
     <a href="index.html">
-        <img src="assets2/img/logo.PNG" alt="Travel GOI">
+        <img src="assets2/img/logo.png" alt="Travel GOI">
     </a>
 </div>
 <div class="header__menu">
@@ -171,7 +171,7 @@ by Awe7 (http://awe7.com/freebies)
 
                 <div class="header__logo">
                     <a href="{{ route('index') }}">
-                        <img src="{{ asset('assets2/img/logo.PNG') }}" alt="Travel GO">
+                        <img src="{{ asset('assets2/img/logo.png') }}" alt="Travel GO">
                     </a>
                 </div>
 

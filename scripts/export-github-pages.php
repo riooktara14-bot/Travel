@@ -36,13 +36,15 @@ if (! is_string($html)) {
 
 $html = preg_replace_callback(
     '~href=(["\'])'.preg_quote($baseUrl, '~').'/([^"\']*)\1~',
-    static fn (array $matches): string => $matches[2] === '' ? 'href="'.$baseUrl.'/"' : 'href="#"',
+    static fn (array $matches): string => $matches[2] === '' ? 'href="'.$baseUrl.'/"' : 'href="#id-1"',
     $html,
 );
 
 if (! is_string($html)) {
     throw new RuntimeException('The home page links could not be prepared for static hosting.');
 }
+
+$html = str_replace('href="#"', 'href="#id-1"', $html);
 
 $outputDirectory = dirname(__DIR__).'/_site';
 

@@ -11,8 +11,8 @@ RUN npm run build
 FROM php:8.3-apache
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libonig-dev libpq-dev libzip-dev unzip \
-    && docker-php-ext-install mbstring opcache pdo_pgsql zip \
+    && apt-get install -y --no-install-recommends libonig-dev libsqlite3-dev libzip-dev unzip \
+    && docker-php-ext-install mbstring opcache pdo_sqlite sqlite3 zip \
     && a2enmod headers rewrite \
     && rm -rf /var/lib/apt/lists/*
 

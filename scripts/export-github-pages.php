@@ -33,22 +33,39 @@ $staticPages = [
     '/destination' => 'wisata.html',
     '/transportasi2' => 'transportasi.html',
     '/contact' => 'contact.html',
+    '/daftar' => 'daftar.html',
+    '/masuk' => 'masuk.html',
+    '/booking1' => 'booking.html',
 ];
 $staticRoutes = [
     '' => 'index.html',
     'destination' => 'wisata.html',
     'transportasi2' => 'transportasi.html',
     'contact' => 'contact.html',
+    'daftar' => 'daftar.html',
+    'login' => 'masuk.html',
+    'masuk' => 'masuk.html',
+    'booking1' => 'booking.html',
 ];
 
 foreach ($staticPages as $route => $fileName) {
-    if ($route === '/destination') {
-        $html = $app->make('view')->make('destination', [
-            'destinasi' => collect(),
-            'lokasiList' => collect(),
-            'search' => '',
-            'selectedLocation' => '',
-        ])->render();
+    if ($route === '/destination' || $route === '/booking1') {
+        $viewData = $route === '/destination'
+            ? [
+                'destinasi' => collect(),
+                'lokasiList' => collect(),
+                'search' => '',
+                'selectedLocation' => '',
+            ]
+            : [
+                'destinasi' => collect(),
+                'transportasis' => collect(),
+            ];
+
+        $html = $app->make('view')->make(
+            $route === '/destination' ? 'destination' : 'booking1',
+            $viewData,
+        )->render();
     } else {
         $request = Request::create($route, 'GET');
         $response = $kernel->handle($request);
@@ -85,6 +102,31 @@ foreach ($staticPages as $route => $fileName) {
     }
 
     $html = str_replace('href="#"', 'href="#id-1"', $html);
+
+    $demoNotice = <<<'HTML'
+<aside role="status" style="position:relative;z-index:9999;padding:12px 20px;background:#fff4df;color:#573900;text-align:center;font:600 14px/1.5 Arial,sans-serif">
+    Versi demo statis: semua menu halaman bisa dibuka. Login, daftar, booking, pencarian, dan pengiriman formulir belum aktif karena situs ini tidak memakai backend atau database.
+</aside>
+HTML;
+    $formGuard = <<<'HTML'
+<script>
+document.addEventListener('submit', function (event) {
+    event.preventDefault();
+    window.alert('Ini hanya demo statis. Fitur ini memerlukan backend dan database.');
+});
+</script>
+HTML;
+    $html = preg_replace('/<body\b[^>]*>/i', '$0'.$demoNotice, $html, 1);
+
+    if (! is_string($html)) {
+        throw new RuntimeException('The demo notice could not be added to '.$fileName.'.');
+    }
+
+    $html = preg_replace('/<\/body>/i', $formGuard.'</body>', $html, 1);
+
+    if (! is_string($html)) {
+        throw new RuntimeException('The static form guard could not be added to '.$fileName.'.');
+    }
 
     if (file_put_contents($outputDirectory.'/'.$fileName, $html) === false) {
         throw new RuntimeException('The static page could not be written: '.$fileName);
@@ -131,4 +173,4 @@ foreach (['assets', 'assets2'] as $assetDirectory) {
     }
 }
 
-fwrite(STDOUT, "Exported the home, destination, transportation, and contact pages with their assets to _site/.\n");
+fwrite(STDOUT, "Exported all seven public menu pages and their assets to _site/.\n");

@@ -227,7 +227,7 @@
   <div class="wrap">
     <div class="brand">
       <a href="{{ route('index') }}">
-        <img src="{{ asset('assets2/img/logo.PNG') }}" alt="Travel GO">
+        <img src="{{ asset('assets2/img/logo.png') }}" alt="Travel GO">
       </a>
     </div>
 

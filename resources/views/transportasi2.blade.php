@@ -307,7 +307,7 @@
     /* ==================================================
        BACKGROUND HERO
        PATH GAMBAR:
-       public/assets2/img/bg2.JPG
+       public/assets2/img/bg3.jpg
        ================================================== */
 
     .hero{
@@ -321,7 +321,7 @@
                 rgba(6,20,40,0.25),
                 rgba(6,20,40,0.25)
             ),
-            url("{{ asset('assets2/img/bg3.JPG') }}");
+            url("{{ asset('assets2/img/bg3.jpg') }}");
 
         /* POSISI GAMBAR */
         background-position:center center;
@@ -475,7 +475,7 @@
 
  <div class="brand">
     <a href="{{ route('index') }}">
-        <img src="{{ asset('assets2/img/logo.PNG') }}" alt="Travel GOI">
+        <img src="{{ asset('assets2/img/logo.png') }}" alt="Travel GOI">
     </a>
 </div>
 

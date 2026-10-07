@@ -139,7 +139,7 @@ h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
     <nav class="nav">
       <div class="brand">
         <a href="{{ route('index') }}">
-          <img src="{{ asset('assets2/img/logo.PNG') }}" alt="Travel GO">
+          <img src="{{ asset('assets2/img/logo.png') }}" alt="Travel GO">
         </a>
       </div>
 
